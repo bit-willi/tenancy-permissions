@@ -18,12 +18,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $user = User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test1@example.com',
-        ]);
+        //$user = User::factory()->create([
+            //'name' => 'Test User',
+            //'email' => 'test1@example.com',
+        //]);
 
         Permission::create(['name' => 'index-users']);
-        Role::create(['name' => 'admin']);
+
+        $adminRole = Role::create(['name' => 'admin']);
+
+        $adminRole->givePermissionTo([
+            'index-users',
+        ]);
     }
 }
